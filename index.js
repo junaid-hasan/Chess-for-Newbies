@@ -35,8 +35,10 @@ var board = Chessboard('myBoard', "start");
 
 //chessboard and graphic dimensions
 const chessboardwidth = 350
-const width = window.innerWidth - 5 - chessboardwidth;
-const height = window.innerHeight - 5;
+const width = window.innerWidth -5 - chessboardwidth;
+console.log(window.innerWidth)
+console.log(window.innerHeight)
+const height = window.innerHeight -5
 const breadcrumbWidth = 75;
 const breadcrumbHeight = 30;
 const radius = width / 2;
@@ -176,7 +178,8 @@ const targetFiles = ['2014-01.csv','2014-01-2.csv','2014-01-3.csv']
   }
     console.log(text)
     sliderValue.textContent = text;
-selectAll('.sunburst-chess').remove()
+selectAll('.sunburst-path').remove()
+    selectAll('.sunburst-path-mouse').remove()
     const newName = targetFiles[index];
     filename = newName;
 
@@ -202,20 +205,22 @@ csv(filename)
   .then((data) => {
     //console.log(data)
     const root = partition(data);
-  const svg = select('body')
-  .append('svg')
-  .attr('width', width)
-  .attr('height', height)
-.attr('class','sunburst-chess')
-	.attr(
-    'transform',
-    `translate(${centerX}, ${-22*centerY})`
-  )
-	.attr(
-    'viewBox',
-    `${-radius} ${-radius} ${width} ${width}`
-  );
-    //console.log(root)
+//   const svg = select('body')
+//   .append('svg')
+//   .attr('width', width)
+//   .attr('height', height)
+// //.attr('class','sunburst-chess')
+// 	.attr(
+//     'transform',
+//     `translate(${centerX}, ${-22*centerY})`
+//   )
+// 	.attr(
+//     'viewBox',
+//     `${-radius} ${-radius} ${width} ${width}`
+//   );
+  //const svg = document.getElementById("sunburst");
+  const svg = select("#sunburst");
+    console.log(svg)
   const element = svg.node();
 element.value = { sequence: [], percentage: 0.0 };
   const label = svg
@@ -270,7 +275,8 @@ label
         
       })
       //.attr('fill','gold')
-      .attr('d', arc);
+      .attr('d', arc)
+  .attr('class','sunburst-path');
 
     svg
       .append('g')
@@ -297,6 +303,7 @@ label
       )
       .join('path')
       .attr('d', mousearc)
+    .attr('class','sunburst-path-mouse')
       .on('mouseenter', (event, d) => {
         // Get the ancestors of the current segment, minus the root
         selectAll('.steps').remove();
@@ -418,8 +425,10 @@ function buildHierarchy(csv) {
       continue;
     }
     const parts = sequence.split('-');
+    console.log(parts.length)
     let currentNode = root;
     for (let j = 0; j < parts.length; j++) {
+      console.log(currentNode)
       const children = currentNode['children'];
       const nodeName = parts[j];
       let childNode = null;
