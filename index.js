@@ -34,11 +34,11 @@ var ruyLopez =
 var board = Chessboard('myBoard', "start");
 
 //chessboard and graphic dimensions
-const chessboardwidth = 350
+const chessboardwidth = 250
 const width = window.innerWidth -5 - chessboardwidth;
-console.log(window.innerWidth)
-console.log(window.innerHeight)
-const height = window.innerHeight -5
+console.log(window.innerWidth);
+console.log(window.innerHeight);
+const height = window.innerHeight - 5;
 const breadcrumbWidth = 75;
 const breadcrumbHeight = 30;
 const radius = width / 2;
@@ -146,27 +146,27 @@ const partition = (data) =>
   );
 let sliderValue = document.getElementById("sliderValue");
 
-let filename = '2014-01.csv'
-//let filename = '2015-12.csv'
+let filename = '2015-12.csv'
+
 generateSunburst(filename)
 //selectAll('.sunburst-chess').remove()
-const targetFiles = ['2014-01.csv','2014-01-2.csv','2014-01-3.csv']
-//const targetFiles = ['2015-12.csv', '2015-12-2.csv', '2015-12-3.csv', '2015-12-4.csv', '2015-12-5.csv']
+//const targetFiles = ['2014-01.csv','2014-01-2.csv','2014-01-3.csv']
+const targetFiles = ['2015-12-1.csv', '2015-12-2.csv', '2015-12-3.csv']
   slider.addEventListener('input', function () {
     const index = parseInt(this.value);
     let text = "";
   switch (index) {
     case 0:
 //      text = "Popular Games";
-      	text = "Top 50 games";
+      	text = "Top 500";
       break;
     case 1:
 //      text = "Medium frequency";
-      	text = "51-100 Popular Games";
+      	text = "500-1000 ";
       break;
     case 2:
 //      text = "Niche Games";
-      	text = "101-150 Niche Games";
+      	text = "1000-1500 ";
       break;
 //    case 3:
 //      	text = "151-200";
@@ -429,17 +429,14 @@ function buildHierarchy(csv) {
     let currentNode = root;
     for (let j = 0; j < parts.length; j++) {
       console.log(currentNode)
+      console.log(parts[j])
       const children = currentNode['children'];
       const nodeName = parts[j];
       let childNode = null;
       if (j + 1 < parts.length) {
         // Not yet at the end of the sequence; move down the tree.
         let foundChild = false;
-        for (
-          let k = 0;
-          k < children.length;
-          k++
-        ) {
+        for (let k = 0;k < children.length;k++) {
           if (children[k]['name'] == nodeName) {
             childNode = children[k];
             foundChild = true;
@@ -453,12 +450,15 @@ function buildHierarchy(csv) {
             children: [],
           };
           children.push(childNode);
+          console.log("addnew")
         }
         currentNode = childNode;
+        console.log(currentNode)
       } else {
         // Reached the end of the sequence; create a leaf node.
         childNode = {
           name: nodeName,
+          children: [],
           value: size,
         };
         children.push(childNode);
