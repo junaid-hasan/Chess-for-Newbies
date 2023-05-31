@@ -33,27 +33,30 @@ var ruyLopez =
   'r1bqkbnr/pppp1ppp/2n5/1B2p3/4P3/5N2/PPPP1PPP/RNBQK2R';
 var board = Chessboard('myBoard', "start");
 
-const width = window.innerWidth - 5;
+//chessboard and graphic dimensions
+const chessboardwidth = 350
+const width = window.innerWidth - 5 - chessboardwidth;
 const height = window.innerHeight - 5;
 const breadcrumbWidth = 75;
 const breadcrumbHeight = 30;
 const radius = width / 2;
-const centerX = width / 16; // X-coordinate of the desired center position
-const centerY = height / 20;
+const centerX = width / 16 + chessboardwidth; // X-coordinate of the desired center position
+const centerY = height/30;
 // e3 e4 d4 g3 b4
 
-const svg = select('body')
-  .append('svg')
-  .attr('width', width)
-  .attr('height', height)
-  .attr(
-    'transform',
-    `translate(${centerX}, ${centerY})`
-  )
-  .attr(
-    'viewBox',
-    `${-radius} ${-radius} ${width} ${width}`
-  ); // Apply translation to center the SVG element
+// const svg = select('body')
+//   .append('svg')
+//   .attr('width', width)
+//   .attr('height', height)
+// .attr('class','sunburst-chess')
+// 	.attr(
+//     'transform',
+//     `translate(${centerX}, ${-20*centerY})`
+//   )
+// 	.attr(
+//     'viewBox',
+//     `${-radius} ${-radius} ${width} ${width}`
+//   ); // Apply translation to center the SVG element
 
 const arc = d3
   .arc()
@@ -79,17 +82,28 @@ const mousearc = d3
 
 // // Get the DOM node of the SVG element
 // document.body.appendChild(svg.node());
-const element = svg.node();
-element.value = { sequence: [], percentage: 0.0 };
-console.log(element);
+// const element = svg.node();
+// element.value = { sequence: [], percentage: 0.0 };
+//console.log(element);
+
+// possible colors
 const color = scaleOrdinal()
-  .domain(['e3', 'e4', 'd4', 'g3', 'b4'])
+  .domain(['e3-0', 'e3-1','e4-0','e4-1', 'd4-0','d4-1', 'g3-0', 'g3-1','b4-0','b4-1','f3-0','f3-1','d3-0','d3-1'])
   .range([
-    '#5d85cf',
-    '#7c6561',
-    '#da7847',
-    '#6fb971',
-    '#9e70cf',
+    '#ffc0cb',
+    '#800000',
+    '#90EE90',
+    '#008000',
+    '#add8e6',
+    '#000080',
+    '#ff00ff',
+    '#800080',
+    '#ffff00',
+    '#808000',
+		'#d3d3d3',
+    '#808080',
+    '#ffa500',
+    '#ff8c00',
   ]);
 
 const partition = (data) =>
@@ -102,7 +116,109 @@ const partition = (data) =>
       .sort((a, b) => b.value - a.value)
   );
 
-const label = svg
+// const label = svg
+//   .append('text')
+//   .attr('text-anchor', 'middle')
+//   .attr('fill', 'blue')
+//   .style('visibility', 'hidden');
+
+// label
+//   .append('tspan')
+//   .attr('class', 'percentage')
+//   .attr('x', 0)
+//   .attr('y', 0)
+//   .attr('dy', '-0.1em')
+//   .attr('font-size', '3em')
+//   .text('');
+
+// label
+//   .append('tspan')
+//   .attr('x', 0)
+//   .attr('y', 0)
+//   .attr('dy', '2.5em')
+//   .text('of chess players playing in this way');
+
+// adding slider
+  let slider = document.getElementById(
+    'dateSlider1'
+  );
+let sliderValue = document.getElementById("sliderValue");
+
+let filename = '2014-01.csv'
+//let filename = '2015-12.csv'
+generateSunburst(filename)
+//selectAll('.sunburst-chess').remove()
+const targetFiles = ['2014-01.csv','2014-01-2.csv','2014-01-3.csv']
+//const targetFiles = ['2015-12.csv', '2015-12-2.csv', '2015-12-3.csv', '2015-12-4.csv', '2015-12-5.csv']
+  slider.addEventListener('input', function () {
+    const index = parseInt(this.value);
+    let text = "";
+  switch (index) {
+    case 0:
+//      text = "Popular Games";
+      	text = "Top 50 games";
+      break;
+    case 1:
+//      text = "Medium frequency";
+      	text = "51-100 Popular Games";
+      break;
+    case 2:
+//      text = "Niche Games";
+      	text = "101-150 Niche Games";
+      break;
+//    case 3:
+//      	text = "151-200";
+//      break;
+//    case 4:
+//      	text = "201-250";
+    default:
+      text = "";
+  }
+    console.log(text)
+    sliderValue.textContent = text;
+selectAll('.sunburst-chess').remove()
+    const newName = targetFiles[index];
+    filename = newName;
+
+    console.log(filename);
+    generateSunburst(filename)
+		// date to human readable quarter
+    // if (
+    //   targetDate.getTime() ===
+    //   targetDates[0].getTime()
+    // ) {
+    //   season = 'Oct-Dec, 2016';
+    // }
+  });
+
+// generateSunburst(filename)
+function generateSunburst(filename){
+csv(filename)
+  .then((parsedData) => {
+    //console.log(parsedData);
+    //console.log(parsedData[1].pgn)
+    return buildHierarchy(parsedData);
+  })
+  .then((data) => {
+    //console.log(data)
+    const root = partition(data);
+  const svg = select('body')
+  .append('svg')
+  .attr('width', width)
+  .attr('height', height)
+.attr('class','sunburst-chess')
+	.attr(
+    'transform',
+    `translate(${centerX}, ${-22*centerY})`
+  )
+	.attr(
+    'viewBox',
+    `${-radius} ${-radius} ${width} ${width}`
+  );
+    //console.log(root)
+  const element = svg.node();
+element.value = { sequence: [], percentage: 0.0 };
+  const label = svg
   .append('text')
   .attr('text-anchor', 'middle')
   .attr('fill', 'blue')
@@ -114,26 +230,15 @@ label
   .attr('x', 0)
   .attr('y', 0)
   .attr('dy', '-0.1em')
-  .attr('font-size', '3em')
+  .attr('font-size', '2em')
   .text('');
 
 label
   .append('tspan')
   .attr('x', 0)
   .attr('y', 0)
-  .attr('dy', '2.5em')
-  .text('of chess players playing in this way');
-
-const csvdata = csv('2014-01.csv')
-  .then((parsedData) => {
-    //console.log(parsedData);
-    //console.log(parsedData[1].pgn)
-    return buildHierarchy(parsedData);
-  })
-  .then((data) => {
-    //console.log(data)
-    const root = partition(data);
-    //console.log(root)
+  .attr('dy', '2em')
+  .text('Games');
     const path = svg
       .append('g')
       .selectAll('path')
@@ -146,16 +251,23 @@ const csvdata = csv('2014-01.csv')
         })
       )
       .join('path')
-      .attr('fill', (data) => {
+    
+      path.attr('fill', (data) => {
         let h = data.depth - 1;
-        //console.log(data)
+        console.log(h)
         for (let i = 0; i < h; i++) {
           //console.log(i);
           data = data.parent;
         }
+// color the black player darker
+        if(h%2 ===0){
+               return color(data.data.name+'-0');
+        } else {
+         return color(data.data.name+'-1');
+        }
         //console.log(data);
        // console.log(data.data.name);
-        return color(data.data.name);
+        
       })
       //.attr('fill','gold')
       .attr('d', arc);
@@ -251,9 +363,9 @@ const csvdata = csv('2014-01.csv')
           .append('tspan')
           .attr('class', 'steps')
           .attr('x', 0)
-          .attr('y', -430)
+          .attr('y', 420)
           .attr('dy', '-0.1em')
-          .attr('font-size', '3em')
+          .attr('font-size', '1.5em')
           .text(str);
       });
 
@@ -294,7 +406,7 @@ const csvdata = csv('2014-01.csv')
   .catch((error) => {
     console.error('Error:', error);
   });
-
+}
 function buildHierarchy(csv) {
   // Helper function that transforms the given CSV into a hierarchical format.
   const root = { name: 'root', children: [] };

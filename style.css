@@ -8,3 +8,23 @@ body {
   stroke: #fff;
   stroke-width: 2px;
 } */
+
+/* color for headings */
+
+h1 {
+color: darkblue;
+    display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.slider {
+  width: 20%;
+
+}
+.slider-container {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+	margin-left:5%;
+}
