@@ -1,7 +1,7 @@
 
 body {
   margin: 0;
-  overflow: hidden;
+  overflow: flow;
 }
 /* .city {
   fill: red;
