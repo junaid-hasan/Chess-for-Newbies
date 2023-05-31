@@ -1,46 +1,21 @@
 <!DOCTYPE html><html><head>
     <title>Sunburst Chess</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="https://unpkg.com/topojson@3.0.2/dist/topojson.min.js"></script>
-  <script src="https://unpkg.com/d3@7.8.4"></script></head>
-  <body>
-    <h1>First K steps of miniature chess games</h1>
-    <div id="observablehq-viewof-sunburst-3f8d7bf2"></div>
-    <h2 id="our-plans">Our Plans</h2>
-    <p> We plan to do the following:
-    </p>
-    <ol>
-      <li>Show a sunburst chart of first moves of Miniature Chess Games</li>
-      <li>There is no guidance on short games, people focus on games of top players instead of short games</li>
-      <li>We want which miniatures are popular on lichess therefore preparing our audience either to play a minature or see it when someone tries it the trick on them the next time they play.</li>
-      <li>We plan to also show a chess board on the right with the moves shown as the game progresses move by move when one hovers/clicks on the sunburst.</li>
-    </ol>
-    <h2>Toolchain</h2>
-    <ol>
-      <li>We collect games played on lichess excess of 30 GB of data</li>
-      <li>We filter out the short games (between 3 and 15 moves)</li>
-      <li>We use these on the sunburst.</li>
-    </ol>
-    <h2>All comments welcome!</h2>
-    <p>Our sunburst is not ready yet, but this is a peek at what will be in our final version. We will need at least another week to add a lot more to this website.</p>
+    
+    <link rel="stylesheet" href="https://unpkg.com/@chrisoakman/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.css" integrity="sha384-q94+BZtLrkL1/ohfjR8c6L+A6qzNH9R2hBLwyoAfu3i/WCvQjzL2RQJ3uNHDISdU" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script>
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@observablehq/inspector@5/dist/inspector.css">
-    <script type="module">
-      import {
-        Runtime,
-        Inspector,
-      } from 'https://cdn.jsdelivr.net/npm/@observablehq/runtime@5/dist/runtime.js';
-      import define from 'https://api.observablehq.com/d/61d1a0a467b3df82.js?v=3';
-      new Runtime().module(define, (name) => {
-        if (name === 'viewof sunburst')
-          return new Inspector(
-            document.querySelector(
-              '#observablehq-viewof-sunburst-3f8d7bf2'
-            )
-          );
-        return ['breadcrumb'].includes(name);
-      });
-    </script>
+<script src="https://unpkg.com/@chrisoakman/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.js" integrity="sha384-8Vi8VHwn3vjQ9eUHUxex3JSN/NFqUg3QbPyX8kWyb93+8AC/pPWTzj+nHtbC5bxD" crossorigin="anonymous"></script>
+    
+    
+   
+  <script src="https://unpkg.com/d3@7.8.4"></script><script src="https://unpkg.com/d3@7.8.4"></script><script src="https://unpkg.com/d3@7.8.4"></script><script src="https://unpkg.com/d3@7.8.4"></script></head>
+  <body>
+    <h1>First K steps of chess games</h1>
+
+		<div id="myBoard" style="width: 200px"></div>
+
+
+
   
 
 <script src="bundle.js"></script></body></html>
