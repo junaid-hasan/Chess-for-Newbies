@@ -235,14 +235,14 @@ label
   .attr('x', 0)
   .attr('y', 0)
   .attr('dy', '-0.1em')
-  .attr('font-size', '2em')
+  .attr('font-size', '3em')
   .text('');
 
 label
   .append('tspan')
   .attr('x', 0)
   .attr('y', 0)
-  .attr('dy', '2em')
+  .attr('dy', '3em')
   .text('Games');
     const path = svg
       .append('g')
