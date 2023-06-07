@@ -42,12 +42,12 @@ import {
 //  const chessboardwidth = 250;
 //const width = window.innerWidth -5 - chessboardwidth;
 //  const width = window.innerWidth/2 -5;
-	const width = viewSize;
+	const width = viewSize*3/4;
 	console.log(window.innerWidth);
   console.log(window.innerHeight);
 //  const height = window.innerHeight - 5;
 //	const height = window.innerHeight/2 -5;
- const height = viewSize;
+ const height = viewSize*3/4;
 //  const breadcrumbWidth = 75;
 //	const breadcrumbWidth = 75/2;
 	const breadcrumbWidth = viewSize/20;

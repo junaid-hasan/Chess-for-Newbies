@@ -99,7 +99,6 @@ Description: alive is a minimal, responsive, business coming soon / landing page
 
 <script src="https://unpkg.com/d3@7.8.4"></script><script src="https://unpkg.com/d3@7.8.4"></script><script src="https://unpkg.com/d3@7.8.4"></script></head>
 <body>
-  <h1>Chess for Newbies</h1>
   <div style="margin: 25px 50px 75px;">
 <!---          
 <h2 id="Chess-Intro">What is Chess?</h2>
@@ -126,7 +125,7 @@ Description: alive is a minimal, responsive, business coming soon / landing page
   We focused on <b>miniature</b> games (less than 15 moves per player), to remove the reliance on deep chess theory.
 </li>
 <li>
-  We looked at games from the <a href="https://database.lichess.org/">lichess database </a>, to understand how common minature games go about.
+  We looked at 5 million unique games from the <a href="https://database.lichess.org/">lichess database </a>, to understand how common minature games go about.
 </li>
 <li>
   We generate a sunburst map showing the most common games. The larger the region on the annulus, the more common the move is.
@@ -153,10 +152,10 @@ Description: alive is a minimal, responsive, business coming soon / landing page
           <div class="sliders">
               <!--       <button id="playButton">Play</button> -->
               <!--- emsp and nbsp are for spaces-->
-              <label for="dateSlider1">  &nbsp;   Games Ratings </label> &nbsp;
+              <label for="dateSlider1">  &nbsp;   Player Ratings </label> &nbsp;
               <input class="slider" id="dateSlider1" type="range" min="0" max="5" step="1" value="0">
               <span id="sliderValue">3500-4000</span>
-              <label for="rateSlider"> &nbsp;&nbsp;&nbsp; &nbsp;   Frequencies </label> &nbsp;
+              <label for="rateSlider"> &nbsp;&nbsp;&nbsp; &nbsp;   Number of Games </label> &nbsp;
               <input class="slider" id="rateSlider" type="range" min="0" max="5" step="1" value="0">
               <span id="rateValue">Top 500</span>
           </div>
