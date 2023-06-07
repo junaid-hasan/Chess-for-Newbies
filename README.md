@@ -14,4 +14,6 @@ This will help them understand why the current openings are as they are, and als
 
 We do this via a sunburst plot which shows how common the move is in the lichess database among miniature games.
 
+Infact the board is clickable! Move the pieces on the board and compare your moves to the top moves in the database.
+
 Try it out!
