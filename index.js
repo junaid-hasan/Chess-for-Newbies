@@ -37,28 +37,28 @@ import {
     'r1bqkbnr/pppp1ppp/2n5/1B2p3/4P3/5N2/PPPP1PPP/RNBQK2R';
   var board = Chessboard('myBoard', "start");
   var boardelite = Chessboard('myBoardelite', "start");
-//  const viewSize = 700;
+  const viewSize = 1000;
   //chessboard and graphic dimensions
-  const chessboardwidth = 250;
-  const width = window.innerWidth -5 - chessboardwidth;
+//  const chessboardwidth = 250;
+//const width = window.innerWidth -5 - chessboardwidth;
 //  const width = window.innerWidth/2 -5;
-//	const width = viewSize;
+	const width = viewSize;
 	console.log(window.innerWidth);
   console.log(window.innerHeight);
-  const height = window.innerHeight - 5;
+//  const height = window.innerHeight - 5;
 //	const height = window.innerHeight/2 -5;
-// const height = viewSize;
-  const breadcrumbWidth = 75;
+ const height = viewSize;
+//  const breadcrumbWidth = 75;
 //	const breadcrumbWidth = 75/2;
-//	const breadcrumbWidth = viewSize/20;
-  const breadcrumbHeight = 30;
+	const breadcrumbWidth = viewSize/20;
+//  const breadcrumbHeight = 30;
 //	const breadcrumbHeight = 30/2;
-//	const breadcrumbHeight = viewSize/50;	
+	const breadcrumbHeight = viewSize/50;	
   const radius = width / 2;
-  const centerX = width / 16 + chessboardwidth; // X-coordinate of the desired center position
-  const centerY = height/30;
-//	const centerX = 0;
-//	const centerY =0;
+//  const centerX = width / 16 + chessboardwidth; // X-coordinate of the desired center position
+//  const centerY = height/30;
+	const centerX = 0;
+	const centerY =0;
   // e3 e4 d4 g3 b4
   
   // const svg = select('body')
