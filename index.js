@@ -393,8 +393,8 @@ var heatmaptext = document.getElementById("heatmaptitle")
      case 4:
            text = "1500-2000";
         break;
-        case 5:
-           text = "1000-1500";
+    	case 5:
+          text = "1000-1500";
         break;
       default:
         text = "";
@@ -743,7 +743,7 @@ var heatmaptext = document.getElementById("heatmaptitle")
               label
             .style('visibility', null)
             .select('.percentage')
-            .text("Very Few");
+            .text("No Games");
       }
     }
           // // Update the value of this view with the currently hovered sequence and percentage
@@ -1076,7 +1076,7 @@ var heatmaptext = document.getElementById("heatmaptitle")
               label
             .style('visibility', null)
             .select('.percentage-elite')
-            .text("Very Few");
+            .text("No Games");
       }
     }
           // // Update the value of this view with the currently hovered sequence and percentage
