@@ -97,9 +97,9 @@ color: darkblue;
 
 #svgImage{
 min-width: 200px;
-max-width: 100%;
-min-height: 90%;
-max-height: 100%;
+max-width: 50%;
+min-height: auto;
+max-height: auto;
 margin: 0px 0px 0px 0px;
 }
 .controls {
