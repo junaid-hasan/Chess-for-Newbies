@@ -52,7 +52,7 @@ color: darkblue;
 #myBoard {
   /*margin: 200px 75px 50px;*/
   /*width: 300px;*/
-  max-width: 50%;
+  max-width: 70%;
   /* justify-content: center; */
   min-width: 300px;
 /* 	margin: 50px 50px 0px 0px; */
@@ -61,7 +61,7 @@ color: darkblue;
 #myBoardelite {
   /*margin: 200px 75px 50px;*/
   /*width: 300px;*/
-  max-width: 50%;
+  max-width: 70%;
   /* justify-content: center; */
   min-width: 300px;
 /* 	margin: 50px 50px 0px 0px; */
@@ -75,7 +75,7 @@ color: darkblue;
   height: 100%; */
   min-width: 300px;
   max-width: 100%;
-  min-height: 90%;
+  min-height: 60%;
   max-height: 100%;
   margin: 0px 0px 0px 100px;
   /*margin-left:100px;*/
@@ -89,7 +89,7 @@ color: darkblue;
   height: 100%; */
   min-width: 300px;
   max-width: 100%;
-  min-height: 90%;
+  min-height: 60%;
   max-height: 100%;
   margin: 0px 0px 0px 100px;
   /*margin-left:100px;*/
