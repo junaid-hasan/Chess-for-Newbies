@@ -353,18 +353,18 @@ var heatmaptext = document.getElementById("heatmaptitle")
       selectAll('.game-text').remove()
               selectAll('.steps').remove();
           selectAll('.steps-click').remove();
-    clickmode = false
+   // clickmode = false
     generateSunburst(filename,input,levelValue)
   });
   document.getElementById("newgame-elite").addEventListener("click", function() {
-    game = new Chess()
+    gameelite = new Chess()
       selectAll('.sunburst-path-elite').remove()
       selectAll('.sunburst-path-mouse-elite').remove()
       selectAll('.percentage-elite').remove()
       selectAll('.game-text-elite').remove()
                       selectAll('.steps-elite').remove();
           selectAll('.steps-click-elite').remove();
-    clickmodeelite = false
+    //clickmodeelite = false
     generateSunburstElite(filenameelite,inputelite,levelValueelite)
   });
   //selectAll('.sunburst-chess').remove()
@@ -482,7 +482,7 @@ var heatmaptext = document.getElementById("heatmaptitle")
           root.descendants().filter((d) => {
             // Don't draw the root node, and for efficiency, filter out nodes that would be too small to see
             return (
-              d.depth && d.x1 - d.x0 > 0.000001
+              d.depth && d.x1 - d.x0 > 0.0001
             );
           })
         )
@@ -531,7 +531,7 @@ var heatmaptext = document.getElementById("heatmaptitle")
         .data(
           root.descendants().filter((d) => {
             // Don't draw the root node, and for efficiency, filter out nodes that would be too small to see
-            return d.depth && d.x1 - d.x0 > 0.001;
+            return d.depth && d.x1 - d.x0 > 0.0001;
           })
         )
         .join('path')
@@ -626,6 +626,7 @@ var heatmaptext = document.getElementById("heatmaptitle")
             .reverse()
             .slice(1);
           // Highlight the ancestors
+          console.log(sequence)
           path.attr('fill-opacity', (node) =>
             sequence.indexOf(node) >= 0 ? 1.0 : 0.3
           );
@@ -708,31 +709,76 @@ var heatmaptext = document.getElementById("heatmaptitle")
             const output = input.replace(/\d+\.\s/g, "").replace(/\s/g, "-");
             const sequenceStr = output.split("-");
             console.log(sequenceStr)
-            const filteredArr = sequenceStr.map((name, index) => {
-            const depth = index + 1;
-            return root.descendants().find(item => item.data.name === name && item.depth === depth);
-            });
-                    //const highLightSunburst = filteredArr
-            const highLightSunburst = filteredArr.filter((d) => {
-            // Don't draw the root node, and for efficiency, filter out nodes that would be too small to see
-            return d.depth && d.x1 - d.x0 > 0.001;
-          })
-                      console.log(highLightSunburst)
+          //   const filteredArr = sequenceStr.map((name, index) => {
+          //   const depth = index + 1;
+          //   return root.descendants().find(item => item.data.name === name && item.depth === depth);
+          //   });
+          //   const bugArr = sequenceStr.map((name, index) => {
+          //   const depth = index + 1;
+          //     const h = root.descendants()[0].height
+          //     console.log(h)
+          //   return root.descendants().find(item => item.data.name === name && item.depth === depth && item.height +item.depth===h);
+          //   });
+          //           //const highLightSunburst = filteredArr
+          //   const highLightSunburst = filteredArr.filter((d) => {
+          //   // Don't draw the root node, and for efficiency, filter out nodes that would be too small to see
+          //   return d.depth && d.x1 - d.x0 > 0.0001;
+          // })
+          //   console.log(bugArr)
+          //   console.log(filteredArr)
+          //             console.log(highLightSunburst)
       //check
       let validSunburst = true
-      validSunburst = root.descendants().includes(highLightSunburst[0]);
-      console.log(validSunburst)
-      for(let i = 1;i<highLightSunburst.length;i++){
-        validSunburst = highLightSunburst[i-1].children.includes(highLightSunburst[i])
-        if(validSunburst ===false) {break;}
+      // validSunburst = root.descendants().includes(highLightSunburst[0]);
+      // console.log(validSunburst)
+      //  console.log(highLightSunburst[0])
+//       for(let i = 1;i<highLightSunburst.length;i++){
+//         console.log(highLightSunburst[i])
+// //         let len = highLightSunburst[i-1].children.length
+// //         for(let j = 0;j<len;j++){
+        
+// //         }
+//         validSunburst = highLightSunburst[i-1].children.includes(highLightSunburst[i])
+//         console.log(validSunburst)
+//         if(validSunburst ===false) {break;}
           
+//       }
+      //for
+      console.log(sequenceStr)
+      let steproot = root.descendants()[0]
+      let sunburstArr = []
+      if(validSunburst){
+        let lenS = sequenceStr.length
+        let iter = 0
+        // console.log(steproot)
+        // console.log(steproot.children)
+				while(iter<lenS){
+          let checkthislevel = false
+					for (let k = 0; k < steproot.children.length; k++) {
+					//console.log(steproot.children[k].data.name);
+            if(steproot.children[k].data.name === sequenceStr[iter]){
+              //console.log("got"+sequenceStr[iter])
+              sunburstArr.push(steproot.children[k])
+            	steproot = steproot.children[k]
+              iter++;
+              checkthislevel = true
+              break;
+            }
+					}
+          if(checkthislevel === false){
+            validSunburst = false
+          	break
+          }
+				}
       }
+      //console.log(sunburstArr)
+      //console.log(validSunburst)
       if(validSunburst){
                     path.attr('fill-opacity', (node) =>
-            highLightSunburst.indexOf(node) >= 0 ? 1.0 : 0.3
+            sunburstArr.indexOf(node) >= 0 ? 1.0 : 0.3
           );
           const percentage = (
-            (100 * highLightSunburst[highLightSunburst.length - 1].value) /
+            (100 * steproot.value) /
             root.value
           ).toPrecision(3);
           label
@@ -1041,37 +1087,66 @@ var heatmaptext = document.getElementById("heatmaptitle")
             const output = input.replace(/\d+\.\s/g, "").replace(/\s/g, "-");
             const sequenceStr = output.split("-");
             console.log(sequenceStr)
-            const filteredArr = sequenceStr.map((name, index) => {
-            const depth = index + 1;
-            return root.descendants().find(item => item.data.name === name && item.depth === depth);
-            });
-                    //const highLightSunburst = filteredArr
-            const highLightSunburst = filteredArr.filter((d) => {
-            // Don't draw the root node, and for efficiency, filter out nodes that would be too small to see
-            return d.depth && d.x1 - d.x0 > 0.001;
-          })
-                      console.log(highLightSunburst)
+          //   const filteredArr = sequenceStr.map((name, index) => {
+          //   const depth = index + 1;
+          //   return root.descendants().find(item => item.data.name === name && item.depth === depth);
+          //   });
+          //           //const highLightSunburst = filteredArr
+          //   const highLightSunburst = filteredArr.filter((d) => {
+          //   // Don't draw the root node, and for efficiency, filter out nodes that would be too small to see
+          //   return d.depth && d.x1 - d.x0 > 0.001;
+          // })
+                    //  console.log(highLightSunburst)
       //check
       let validSunburst = true
-      validSunburst = root.descendants().includes(highLightSunburst[0]);
-      console.log(validSunburst)
-      for(let i = 1;i<highLightSunburst.length;i++){
-        validSunburst = highLightSunburst[i-1].children.includes(highLightSunburst[i])
-        if(validSunburst ===false) {break;}
+//       validSunburst = root.descendants().includes(highLightSunburst[0]);
+//       console.log(validSunburst)
+//       for(let i = 1;i<highLightSunburst.length;i++){
+//         validSunburst = highLightSunburst[i-1].children.includes(highLightSunburst[i])
+//         if(validSunburst ===false) {break;}
           
+     // }
+            let steproot = root.descendants()[0]
+      let sunburstArr = []
+      if(validSunburst){
+        let lenS = sequenceStr.length
+        let iter = 0
+        // console.log(steproot)
+        // console.log(steproot.children)
+				while(iter<lenS){
+          let checkthislevel = false
+					for (let k = 0; k < steproot.children.length; k++) {
+					//console.log(steproot.children[k].data.name);
+            if(steproot.children[k].data.name === sequenceStr[iter]){
+              //console.log("got"+sequenceStr[iter])
+              sunburstArr.push(steproot.children[k])
+            	steproot = steproot.children[k]
+              iter++;
+              checkthislevel = true
+              break;
+            }
+					}
+          if(checkthislevel === false){
+            validSunburst = false
+          	break
+          }
+				}
       }
+      //console.log(sunburstArr)
+      //console.log(validSunburst)
       if(validSunburst){
                     path.attr('fill-opacity', (node) =>
-            highLightSunburst.indexOf(node) >= 0 ? 1.0 : 0.3
+            sunburstArr.indexOf(node) >= 0 ? 1.0 : 0.3
           );
           const percentage = (
-            (100 * highLightSunburst[highLightSunburst.length - 1].value) /
+            (100 * steproot.value) /
             root.value
           ).toPrecision(3);
           label
             .style('visibility', null)
             .select('.percentage-elite')
             .text(percentage + '%');
+
       } else {
               label
             .style('visibility', null)
