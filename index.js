@@ -39,8 +39,9 @@ import {
   
   //chessboard and graphic dimensions
   const chessboardwidth = 250
-  const width = window.innerWidth -5 - chessboardwidth;
-  console.log(window.innerWidth);
+//  const width = window.innerWidth -5 - chessboardwidth;
+  const width = window.innerWidth/2;
+	console.log(window.innerWidth);
   console.log(window.innerHeight);
   const height = window.innerHeight - 5;
   const breadcrumbWidth = 75;
