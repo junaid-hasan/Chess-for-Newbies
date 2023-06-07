@@ -56,7 +56,9 @@ color: darkblue;
   flex-grow: 1;
   justify-content: flex-start;
   min-width: 250px;
-	margin: auto;
+	margin-top: auto;
+ margin-bottom: auto;
+ margin-left: 50px;
 }
 
 #myBoardelite {
@@ -83,7 +85,9 @@ color: darkblue;
   min-height: 90%;
   max-height: 100%;
   justify-content: flex-end;
-  margin: auto;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-right: 50px;
   /*margin-left:100px;*/
 }
 
