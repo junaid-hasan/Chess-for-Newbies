@@ -59,7 +59,7 @@ Description: alive is a minimal, responsive, business coming soon / landing page
         -1px -1px 0 #606060,
         1px -1px 0 #606060,
         -1px 1px 0 #606060,
-        1px 1px 0 #606060;">Stay tuned for something amazing</strong> </div>
+        1px 1px 0 #606060;">J. Choi, G. Gao, J. Hasan, P. Li</strong> </div>
       <div class="countdown styled"></div>
     </div>
   </div>
@@ -82,74 +82,99 @@ Description: alive is a minimal, responsive, business coming soon / landing page
 </body>
 </html>
 <!DOCTYPE html><html><head>
-
-    
-    <link rel="stylesheet" href="style.css">
-    
+  <title>Chess for Newbies</title>
+  
+  <link rel="stylesheet" href="style.css">
+  
 <!-- for loading the chessboard -->
-    <link rel="stylesheet" href="https://unpkg.com/@chrisoakman/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.css" integrity="sha384-q94+BZtLrkL1/ohfjR8c6L+A6qzNH9R2hBLwyoAfu3i/WCvQjzL2RQJ3uNHDISdU" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://unpkg.com/@chrisoakman/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.css" integrity="sha384-q94+BZtLrkL1/ohfjR8c6L+A6qzNH9R2hBLwyoAfu3i/WCvQjzL2RQJ3uNHDISdU" crossorigin="anonymous">
 
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script>
 
 <script src="https://unpkg.com/@chrisoakman/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.js" integrity="sha384-8Vi8VHwn3vjQ9eUHUxex3JSN/NFqUg3QbPyX8kWyb93+8AC/pPWTzj+nHtbC5bxD" crossorigin="anonymous"></script>    
-    
-<!-- chessboard loading complete! -->
   
-  <script src="https://unpkg.com/d3@7.8.4"></script><script src="https://unpkg.com/d3@7.8.4"></script></head>
-  <body>
-    <div style="margin: 25px 50px 75px;">
-          
+<!-- chessboard loading complete! -->
+
+<script src="https://unpkg.com/d3@7.8.4"></script><script src="https://unpkg.com/d3@7.8.4"></script><script src="https://unpkg.com/d3@7.8.4"></script><script src="https://unpkg.com/d3@7.8.4"></script><script src="https://unpkg.com/d3@7.8.4"></script><script src="https://unpkg.com/d3@7.8.4"></script></head>
+<body>
+  <h1>Chess for Newbies</h1>
+  <div style="margin: 25px 50px 75px;">
+<!---          
 <h2 id="Chess-Intro">What is Chess?</h2>
-<p>Chess is a two player game on 64 squares. It has gained a huge popularity recently especially in the online format post COVID. Infact, Chess.com and Lichess.org who are the two most popular platforms, regularly record about 10 and 5 million active players. </p>
+<p>Chess is a two player game on 64 squares. It has gained huge popularity recently especially in the online format post COVID. Infact, <a href="https://www.chess.com/">Chess.com</a> and <a href="https://lichess.org">Lichess.org</a> who are the two most popular platforms, regularly record about 10 and 5 million active players. </p>
+-->
 
 <h2 id="The Problem">The Problem</h2>
 <ul>
-  <li>
-    Existing Chess training is targeted at players who have decent knowledge of chess openings. 
-  </li>
-  <li>
-    Moreover, the games can be quite long (30 or more moves per player) and younger players often fail to reason out the moves.
-  </li>
-  <li> In fact, in the elite games the moves are quite unintuitive.
-  </li>
+<li>
+  Existing Chess training is targeted at players who have decent knowledge of chess openings. 
+</li>
+<li>
+  Moreover, the games can be quite long (30 or more moves per player) and younger players often fail to reason out the moves.
+</li>
+<li> In fact, in the elite games the moves are quite unintuitive to even advanced players.
+</li>
 </ul>
 <h2 id="The Solution"> Our Goal</h2>
 <ul>
-  <li>
-    We want to target <b>extreme beginners</b>, and teach some them common tricks to trap a fellow beginner player.
-  </li>
-  <li>
-    We focused on <b>miniature</b> games (less than 15 moves per player), to remove the reliance on deep chess theory.
-  </li>
-  <li>
-    We looked at games from the lichess database, to understand how common minature games go about.
-  </li>
-  <li>
-    This will hopefully provide a beginner player, a few initial moves to get a decent advantage against a fellow player.
-  </li>
-</ul>
+<li>
+  We want to target <b>extreme beginners</b> (those who only know the moves), and show them common tricks to trap a fellow beginner player.
+</li>
+<li>
+  We focused on <b>miniature</b> games (less than 15 moves per player), to remove the reliance on deep chess theory.
+</li>
+<li>
+  We looked at games from the <a href="https://database.lichess.org/">lichess database </a>, to understand how common minature games go about.
+</li>
+<li>
+  We generate a sunburst map showing the most common games. The larger the region on the annulus, the more common the move is.
+</li>
+<li>
+ The default chart only shows the 50 most popular games, but one can use the slider to see the more uncommon games to learn more about what makes these short games so interesting. 
+</li>
+  </ul></div>
+  <div class="container">
+      <div class="svg-container">
+      <div id="myBoard"></div>
+          <svg id="sunburst" viewBox="-350 -350 700 700" transform="translate(0, 0)"> 
 
+              <!--    
+                  <svg width="40%" height="80%" id="sunburst" viewBox="-604 -604 1210 1210" transform="translate(776, -400)">
+              -->
+                  <!-- Add your SVG content here -->
+          </svg>
+      </div>
+      <div class="controls">
+          <div class="sliders">
+              <!--       <button id="playButton">Play</button> -->
+              <!--- emsp and nbsp are for spaces-->
+              <label for="dateSlider1">  &nbsp;   Games Ratings </label> &nbsp;
+              <input class="slider" id="dateSlider1" type="range" min="0" max="5" step="1" value="0">
+              <span id="sliderValue">3500-4000</span>
+              <label for="rateSlider"> &nbsp;&nbsp;&nbsp; &nbsp;   Frequencies </label> &nbsp;
+              <input class="slider" id="rateSlider" type="range" min="0" max="5" step="1" value="0">
+              <span id="rateValue">Top 500</span>
+          </div>
+          <div class="buttons">
+              <button id="clickmode">Reset Sunburst</button>
+              <button id="newgame">New Game</button>
+          </div>
+      </div>
+  </div>
+<script src="bundle.js"></script>
+  
+<div style="margin: 0px 50px 5px;">
 <h2 id="findings">Findings</h2>
 <p>
-  There are several common trappy lines we figured out. Here is an example: 
-      </p>
+There are several common trappy lines we figured out. Here is an example: 
+    </p>
 <p>
-  1. e4 e5 2. Nf3 Nc6 3. Bc4 Nd4 4. Nxe5 Qg5! 5. Nxf7 Qxg2 6. Rf1 Qxe4# 7. Be2 Nf3#
+1. e4 e5 2. Nf3 Nc6 3. Bc4 Nd4 4. Nxe5 Qg5! 5. Nxf7 Qxg2 6. Rf1 Qxe4# 7. Be2 Nf3#
 </p>
 <ul>
-  <li>
-    Although these types of moves are typically not objectively the best, they are easy to understand in beginner's perspective yet have clear purpose. This may give advantage to one of the players and even quick wins sometimes. 
-  </li>
-</ul>  
-    </div>
-		<div id="myBoard" style="margin: 100px 100px 150px; width: 250px"></div>
-    <div class="slider-container" z-index="100">
-<!--       <button id="playButton">Play</button> -->
-<!--- emsp and nbsp are for spaces-->
-      <label for="dateSlider1">  &nbsp;   Miniatures </label> &nbsp;
-      <input class="slider" id="dateSlider1" type="range" min="0" max="2" step="1" value="0">
-      <span id="sliderValue">Popular Games</span>
-    </div>
-    
-
-<script src="bundle.js"></script></body></html>
+<li>
+  Although these types of moves are typically not objectively the best, they are easy to understand in beginner's perspective yet have clear purpose. This may give advantage to one of the players and even quick wins sometimes. 
+</li>
+</ul> 
+  </div>
+</body></html>
