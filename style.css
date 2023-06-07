@@ -64,7 +64,7 @@ color: darkblue;
   /*width: 300px;*/
   max-width: 70%;
   flex-grow: 1;
-  justify-content: center;
+  justify-content: flex-start;
   min-width: 250px;
  margin: auto; 
 }
@@ -96,7 +96,8 @@ color: darkblue;
   max-width: 100%;
   min-height: 90%;
   max-height: 100%;
-  margin: 0px 0px 0px 100px;
+  justify-content: flex-end;
+  margin: auto;
   /*margin-left:100px;*/
 }
 
