@@ -80,7 +80,8 @@ color: darkblue;
   max-width: 100%;
   min-height: 90%;
   max-height: 100%;
-  margin: 0px 0px 0px 100px;
+  justify-content: right;
+  margin: auto;
   /*margin-left:100px;*/
 }
 
